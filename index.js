@@ -7,7 +7,7 @@ const path = require('path');
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
 
-app.use(express.static('./img'));
+app.use(express.static('./public/'));
 
 
 app.set('views',path.join(__dirname,('./views')));
@@ -40,8 +40,11 @@ mongoose.connect(
 });
 
 const adminRoute = require('./routes/adminRoute');
-
+const movieRoute = require('./routes/movieRoute')
+const bookingRoute = require('./routes/bookingRoute');
 app.use('/user',adminRoute);
+app.use('/movie',movieRoute);
+app.use('/book',bookingRoute);
 
 
 app.listen(port,() => {
